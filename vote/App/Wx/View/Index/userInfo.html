@@ -13,64 +13,23 @@
     <title>投票</title>
 </head>
 <body>
-<div class="weui-cells weui-cells_checkbox" style="margin-top: 0px">
-    <h5>
-        <img src = "http://www.ychudong.com/vote/Public/Admin/images/html_header.png" alt = "" style ="width:100%;height: 30%">
-    </h5>
-    <div class="weui-grids" id ='list'>
-        <volist name="user_list" id="vo">
-            <a class="weui-grid js_grid" style="height: 27%">
-                <div style="width:80%;height:35%;"  class="weui-grid__icon">
-                    <img src="http://www.ychudong.com/vote/Public/Uploads/{$vo.image}" alt=""  onclick = "getDetail(this)" id="{$vo.id},{$vo.is_vote},{$count}">
-                </div>
-				<p class="weui-grid__label" style="font-size: 10px">{$vo.company}</p>
-				<p class="weui-grid__label" style="font-size: 10px">{$vo.position}</p>
-                <p class="weui-grid__label" style="font-size: 12px">{$vo.name}</p>
-				<!--<br/>-->
-                <p class="weui-grid__label" id = "p{$vo.id}" style="font-size: 10px">票数：<span>{$vo.votes}</span></p>
-				<p class="weui-grid__label" style="font-size: 6px;display:none;color:red;" id='vote{$vo.id}'>已投票</p>
-                <label class="weui-cell__hd weui-check__label"  for="we{$vo.id}">
-                    <if condition = "$vo['is_vote'] eq 1">
-                        <p class="weui-grid__label" style="font-size: 6px;color:red;">已投票</p>
-                        <!--<input type="checkbox" class="weui-check" name="checkbox" id="we{$vo.id}" value={$vo.id} disabled = "disabled">-->
-                        <else/>
-                        <input type="checkbox"  name="checkbox" id="we{$vo.id}" value="{$vo.id}" style="text-align: center;display: block">
-                       <!-- <i class="weui-grid__label weui-icon-checked"></i> <p id="we{$vo.id}" class="weui-grid__label" style="font-size:6px;margin-top:-15px;color:red;">投票</p>-->
-                    </if>
-
-                </label>
-            </a>
-        </volist>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">qq</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入qq号">
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_vcode">
+        <div class="weui-cell__hd">
+            <label class="weui-label">手机号</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="tel" placeholder="请输入手机号">
+        </div>
     </div>
 </div>
-
-<div class="weui-footer">
-    <div class="weui-footer weui-footer_fixed-bottom">
-        <p class="weui-footer__links">
-            <button class="weui-btn weui-btn_mini weui-btn_warn" style="width: 40%" value="{$info}" id = "button">
-                投票
-            </button>
-        </p>
-    </div>
-    <input type="hidden" name = 'page' value = "{$page}"/>
-    <input type="hidden" name = 'count' value = "{$count}"/>
-    <input type="hidden" name = 'openid' value = "{$openid}"/>
-    <input type="hidden" name = 'totalPage' value = "{$totalPage}"/>
-</div>
-<div class="weui-loadmore">
-    <i class="weui-loading"></i>
-    <span class="weui-loadmore__tips">正在加载</span>
-</div>
-<div id="toast" style="display: none;">
-    <div class="weui-mask_transparent"></div>
-    <div class="weui-toast">
-        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
-        <p class="weui-toast__content">投票成功</p>
-    </div>
-</div>
-<div id="footer">
-
-</div>
+<button class="weui-btn weui-btn_primary">按钮</button>
 </body>
 <script>
     //下拉加载
