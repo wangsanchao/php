@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="__WXCSS__/weui.css" />
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+    <script src="__ADMINJS__/jquery.dialog.js"></script>
+    <script src="__ADMINJS__/jquery.js" ></script>
+    <script src="__WXJS__/jquery-weui.min.js"></script>
+    <script src="__WXJS__/swiper.js"></script>
+    <script src="__WXJS__/city-picker.js" ></script>
+    <title>投票</title>
+</head>
+<body>
+<h5>
+    <img src = "http://www.ychudong.com/vote/Public/Admin/images/html_header.png" alt = "" style ="width:100%;height: 30%">
+</h5>
+<div class="weui-cells weui-cells_checkbox">
+    <article class="weui-article" id = 'list'>
+            <div class="weui-cell" >
+                    <section>
+                        <p style="text-align: center">
+                            <img src="http://www.ychudong.com/vote/Public/Uploads/{$detail.image}" alt="" style="width:110px;height:60px">
+                        </p>
+						<p style="text-align: center">{$detail.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$detail.position}</p>
+                        <p style="text-align: center">{$detail.company} </p>
+                        <p class = "p{$detail.id}" style="text-align: center">得票数：<span>{$detail.votes}</span></p>
+                        <p>{$detail.memo}</p>
+                    </section>
+            </div>
+    </article>
+</div>
+<div class="weui-footer">
+    <div class="weui-footer weui-footer_fixed-bottom">
+        <p class="weui-footer__links">
+            <button src="http://www.ychudong.com/vote/Wx/Index/voterLists/wid/{$openid}" class="weui-btn weui-btn_mini weui-btn_primary" style="width: 40%" id="back">返回列表页</button>
+
+            <if condition = "$is_vote eq 1">
+                    <button class="weui-btn weui-btn_mini weui-btn_default" style="width: 40%">已投票</button>
+                    <else/>
+                    <button class="weui-btn weui-btn_mini weui-btn_warn" style="width: 40%" value="{$detail.id}" id = "button">投票</button>
+                </if>
+        </p>
+    </div>
+    <input type="hidden" name = 'count' value = "{$count}"/>
+    <input type="hidden" name = 'openid' value = "{$openid}"/>
+</div>
+<div id="toast" style="display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">投票成功</p>
+    </div>
+</div>
+<div id="footer">
+    <img src = "http://www.ychudong.com/vote/Public/Admin/images/html_footer.png" alt = "" style ="width:100%;height: 12%">
+</div>
+</body>
+<script>
+    //点击投票
+    $('#button').click(function(){
+        //获取用户的基本信息
+        //alert('ok');
+        var count =  $("input[name='count']").val();
+        var openId = $("input[name='openid']").val();
+        //alert(openId);
+        var voters = $('#button').val();
+        //alert(voters);
+
+        if((parseInt(count) + parseInt(1)) > 10){
+            alert('每天最多对10个候选人投票');
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "http://www.ychudong.com/vote/Wx/Index/vote",
+                data:   "wid="+openId+"&ids="+voters,
+                dataType:"json",
+                success: function(msg) {
+                    if(msg.status == 1){
+                        //投票成功
+                        $('#toast').css('display','block');
+                        //$("button").attr('id','bu');
+                        //定时器
+                        //alert(chk_value);
+                        var timer = window.setTimeout(function(){
+                            $('#toast').css('display','none');
+                            //改变选中投票人票数以及变为不可选中
+                                var obj =  $('.p'+voters);
+
+
+                                var text = obj.text();
+                                var vote = text.split('：');
+                                var votes = parseInt(vote[1]) + parseInt(1);
+
+                                obj.text('得票数：'+ votes);
+                            var obj1 = $('#button');
+                            obj1.text('已投票');
+                            obj1.css('display','none');
+                            obj1.prop('id','d');
+
+                            var obj2 = $("input[name='count']");
+                            var count = obj2.val();
+                            var counts = parseInt(count) + parseInt(1);
+                            obj2.val(counts);
+                        },1000);
+                    }else{
+                        //投票失败
+                        alert(msg.message);
+                    }
+                }
+            });
+
+        }
+
+    });
+    //返回列表页
+    $('#back').click(function(){
+        var wid = $("input[name='openid']").val();
+        window.location.href = "http://www.ychudong.com/vote/Wx/Index/voterLists/wid/"+wid;
+    });
+</script>
+</html>

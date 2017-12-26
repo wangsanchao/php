@@ -1,0 +1,190 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="__WXCSS__/weui.css" />
+   <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+    <script src="__ADMINJS__/jquery.dialog.js"></script>
+    <script src="__ADMINJS__/jquery.js" ></script>
+    <script src="__WXJS__/jquery-weui.min.js"></script>
+    <script src="__WXJS__/swiper.js"></script>
+    <script src="__WXJS__/city-picker.js" ></script>
+    <title></title>
+</head>
+<body>
+<div class="weui-cells weui-cells_checkbox" id = 'list'>
+    <article class="weui-article">
+        <div class="weui-cell" >
+            <section style="float: right" disabled="true">
+                <section>
+                    <h3>候选人1</h3>
+                    <p>
+                        <img src="http://59.110.22.252/vote/Public/Uploads/5a34e10992ee1.png" alt="">
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </section>
+                <label class="weui-cell__hd weui-check__label" style="float: left" for="s12" >
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s12">
+                    <i class="weui-icon-checked"></i>
+                    <a class="weui-btn weui-btn_mini weui-btn_default" style="margin-left: 15px;margin-bottom: 0.0000000em">投票</a>
+                </label>
+
+            </section>
+        </div>
+		<div class="weui-cell" >
+            <section style="float: right" disabled="true">
+                <section>
+                    <h3>候选人1</h3>
+                    <p>
+                        <img src="http://59.110.22.252/vote/Public/Uploads/5a34e10992ee1.png" alt="">
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </section>
+                <label class="weui-cell__hd weui-check__label" style="float: left" for="s13" >
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s13" >
+                    <i class="weui-icon-checked"></i>
+                    <a class="weui-btn weui-btn_mini weui-btn_default" style="margin-left: 15px;margin-bottom: 5px">投票</a>
+
+                </label>
+
+            </section>
+        </div>
+		<div class="weui-cell" >
+            <section style="float: right" disabled="true">
+                <section>
+                    <h3>候选人1</h3>
+                    <p>
+                        <img src="http://59.110.22.252/vote/Public/Uploads/5a34e10992ee1.png" alt="">
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </section>
+                <label class="weui-cell__hd weui-check__label" for="s14" >
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s14" >
+                    <i class="weui-icon-checked"></i>
+                    <a class="weui-btn weui-btn_mini weui-btn_default" style="margin-left: 15px;">投票</a>
+
+                </label>
+
+            </section>
+        </div>
+		<div class="weui-cell" >
+            <section style="float: right" disabled="true">
+                <section>
+                    <h3>候选人1</h3>
+                    <p>
+                        <img src="http://59.110.22.252/vote/Public/Uploads/5a34e10992ee1.png" alt="">
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </section>
+                <label class="weui-cell__hd weui-check__label" style="float: left" for="s15" >
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s15" >
+                    <i class="weui-icon-checked"></i>
+                    <a class="weui-btn weui-btn_mini weui-btn_default" style="margin-left: 15px;margin-bottom: 5px">投票</a>
+
+                </label>
+
+            </section>
+        </div>
+    </article>
+</div>
+<div class="weui-loadmore">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
+</div>
+<div class="weui-footer">
+    <div class="weui-footer weui-footer_fixed-bottom">
+        <p class="weui-footer__links">
+            <button class="weui-btn weui-btn_mini weui-btn_primary" style="width: 40%">
+                投票
+            </button>
+        </p>
+    </div>
+</div>
+</body>
+
+<script>
+    $(document.body).infinite(100);
+    var loading = false;  //状态标记
+    $(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        setTimeout(function() {
+            $("#list").append("<p> 我是新加载的内容 </p>");
+            loading = false;
+        }, 1000);   //模拟延迟
+    });
+</script>
+<!--<script type="text/javascript" >
+    $(function () {
+        $(document.body).infinite();
+        max=10,page=1;
+        //进入页面加载
+        load(page);
+        //滚动加载更多
+        var loading = false;  //状态标记
+        $(document.body).infinite().on("infinite", function() {
+            if(loading) return;
+            loading = true;
+            setTimeout(function() {
+                $("#list").append("<p> 我是新加载的内容 </p>");
+                loading = false;
+                /*page=page+1;
+                load(page);
+                loading = false;*/
+            }, 1000);   //模拟延迟
+        });
+        //ajax加载数据
+        function load(p) {
+            $("#list").append('<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">'
+                    +'<div class="weui-media-box__hd">'
+                    +'<img class="weui-media-box__thumb" src="http://123.56.119.1:3000/upload/">'
+                    +'</div>'
+                    +'<div class="weui-media-box__bd">'
+                    +'<h4 class="weui-media-box__title"></h4>'
+                    +'</div>'
+                    +'</a>')
+            /*var url="http://123.56.119.1:3000/words/search";
+            var data={"offset":(p-1)*max,"limit":max}
+            $.get(url,data,function (res) {
+                if(res.data.length==0||res.data.length==res.num){
+                    //没有数据时
+                    $(document.body).destroyInfinite()
+                    $(".weui-loadmore").html('<div class="weui-loadmore weui-loadmore_line"> <span class="weui-loadmore__tips">暂无数据</span> </div>')
+                }
+                for(var i=0;i<res.data.length;i++){
+                    $("#list").append('<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">'
+                            +'<div class="weui-media-box__hd">'
+                            +'<img class="weui-media-box__thumb" src="http://123.56.119.1:3000/upload/'+res.data[i].image+'">'
+                            +'</div>'
+                            +'<div class="weui-media-box__bd">'
+                            +'<h4 class="weui-media-box__title">'+res.data[i].content+'</h4>'
+                            +'</div>'
+                            +'</a>')
+                }
+            })*/
+        }
+    })
+
+</script>-->
+</html>

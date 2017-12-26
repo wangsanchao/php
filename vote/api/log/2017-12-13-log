@@ -1,0 +1,26 @@
+2017-12-13 17:32:08*********************start***********************
+2017-12-13 17:32:08 api-request {"wid":"11","ids":"1,2,6"}
+2017-12-13 17:32:08 api-sql update candidate set votes = votes+1 where id = '1'
+2017-12-13 17:32:08 api-sql update candidate set votes = votes+1 where id = '2'
+2017-12-13 17:32:08 api-sql update candidate set votes = votes+1 where id = '6'
+2017-12-13 17:32:08 api-sql update voter set date='2017-12-13',vote_ids = '1,2,6' where wid = '11'
+2017-12-13 17:32:08 api-response {"status":1}
+2017-12-13 17:32:08*********************end***********************
+2017-12-13 17:33:59*********************start***********************
+2017-12-13 17:33:59 api-request {"wid":"11","ids":"1,2,6"}
+2017-12-13 17:33:59 api-add-creator-sql insert ignore into voter(wid, date, ids) value ( 11,'2017-12-13','')
+2017-12-13 17:33:59 api-sql update candidate set votes = votes+1 where id = '1'
+2017-12-13 17:33:59 api-sql update candidate set votes = votes+1 where id = '2'
+2017-12-13 17:33:59 api-sql update candidate set votes = votes+1 where id = '6'
+2017-12-13 17:33:59 api-sql update voter set date='2017-12-13',vote_ids = '1,2,6' where wid = '11'
+2017-12-13 17:33:59 api-response {"status":1}
+2017-12-13 17:33:59*********************end***********************
+2017-12-13 17:49:39*********************start***********************
+2017-12-13 17:49:39 api-request {"wid":"11","ids":"1,2,6"}
+2017-12-13 17:49:39 api-sql insert ignore into voter(wid, date, vote_ids) value ( 11,'2017-12-13','')
+2017-12-13 17:49:39 api-sql update candidate set votes = votes+1 where id = '1'
+2017-12-13 17:49:39 api-sql update candidate set votes = votes+1 where id = '2'
+2017-12-13 17:49:39 api-sql update candidate set votes = votes+1 where id = '6'
+2017-12-13 17:49:39 api-sql update voter set date='2017-12-13',vote_ids = '1,2,6' where wid = '11'
+2017-12-13 17:49:39 api-response {"status":1}
+2017-12-13 17:49:39*********************end***********************
